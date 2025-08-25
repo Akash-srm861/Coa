@@ -62,5 +62,5 @@ gcc converter.c -o converter
 ---
 
 <p align="center">
-  <img src="https://media.giphy.com/media/l3vR0v8n4MkTITZuo/giphy.gif" width="300px" alt="Dog funny"/>
+  <img src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif" width="300px" alt="Cat cool"/>
 </p>
