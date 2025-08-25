@@ -1,5 +1,9 @@
-#include <stdio.h>
+##include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
 
+// Convert decimal to binary
 void toBinary(int n, char *res) {
     int i = 0;
     do {
@@ -15,6 +19,7 @@ void toBinary(int n, char *res) {
     }
 }
 
+// Convert decimal to octal
 void toOctal(int n, char *res) {
     int i = 0;
     do {
@@ -30,6 +35,7 @@ void toOctal(int n, char *res) {
     }
 }
 
+// Convert decimal to hexadecimal
 void toHex(int n, char *res) {
     char hexChars[] = "0123456789ABCDEF";
     int i = 0;
@@ -46,29 +52,63 @@ void toHex(int n, char *res) {
     }
 }
 
-int main() {
-    int decimal;
-
-    printf("-----------------------------------------------------------------------------------------------\n");
-    printf("THIS IS A CONVERTER WHICH CONVERTS DECIMAL NUMBER TO BINARY, OCTAL AND HEXADECIMAL\n");
-    printf("-----------------------------------------------------------------------------------------------\n");
-
-    do {
-        printf("Enter A Non-Negative Integer: ");
-        scanf("%d", &decimal);
-        if (decimal < 0)
-            printf("Enter a positive integer\n");
-    } while (decimal < 0);
-
+void convert(int decimal) {
     char binary[65], octal[23], hex[17];
     toBinary(decimal, binary);
     toOctal(decimal, octal);
     toHex(decimal, hex);
 
-    printf("\nNumber Conversions for %d:\n", decimal);
+    printf("\nNumber Conversions:\n");
+    printf("Decimal     : %d\n", decimal);
     printf("Binary      : %s\n", binary);
     printf("Octal       : %s\n", octal);
     printf("Hexadecimal : %s\n", hex);
+}
 
+int main() {
+    int choice;
+    char input[100];
+
+    while (1) {
+        printf("\n--- Universal Number Converter ---\n");
+        printf("1. Binary → (Decimal/Octal/Hex)\n");
+        printf("2. Octal → (Decimal/Binary/Hex)\n");
+        printf("3. Decimal → (Binary/Octal/Hex)\n");
+        printf("4. Hexadecimal → (Decimal/Binary/Octal)\n");
+        printf("5. Exit\n");
+        printf("Choose an option: ");
+        scanf("%d", &choice);
+
+        if (choice == 5) {
+            printf("Goodbye!\n");
+            break;
+        }
+
+        printf("Enter number: ");
+        scanf("%s", input);
+
+        int decimal = 0;
+
+        switch (choice) {
+            case 1: // Binary
+                decimal = (int)strtol(input, NULL, 2);
+                convert(decimal);
+                break;
+            case 2: // Octal
+                decimal = (int)strtol(input, NULL, 8);
+                convert(decimal);
+                break;
+            case 3: // Decimal
+                decimal = (int)strtol(input, NULL, 10);
+                convert(decimal);
+                break;
+            case 4: // Hex
+                decimal = (int)strtol(input, NULL, 16);
+                convert(decimal);
+                break;
+            default:
+                printf("Invalid choice!\n");
+        }
+    }
     return 0;
 }
